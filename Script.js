@@ -4,6 +4,7 @@ $(document).ready(function () {
     var $matchArray;
     var count = 30;
     var countStarted = false;
+    var counter;
 
     setRandomColor = function ($this) {
         $colorNumber = Math.floor(Math.random() * (3 - 0));
@@ -229,6 +230,8 @@ $(document).ready(function () {
     $('#startOver').click(function () {
         scramble();
         $('#score').text(0);
+        clearInterval(counter);
+        document.getElementById("timer").innerHTML = '30 sec';
         count = 30;
         countStarted = false;
         $('.block').each(function () {
@@ -252,7 +255,8 @@ $(document).ready(function () {
         }
         if (e.keyCode === 13) {
             scramble();
-            $('#score').text(0);
+            document.getElementById("timer").innerHTML = '30 sec';
+            clearInterval(counter);
             count = 30;
             countStarted = false;
             $('.block').each(function () {
@@ -275,8 +279,6 @@ $(document).ready(function () {
             $(this).fadeTo('fast', 1);
         });
     }
-
-    var counter;
 
     startCountdown = function () {
         countStarted = true;
